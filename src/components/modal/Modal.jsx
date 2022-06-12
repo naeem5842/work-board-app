@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import "./Modal.css";
-import{v4 as uuid} from 'uuid';
+import { v4 as uuid } from "uuid";
 
 function Modal(prop) {
-
-    const unique_id = uuid();
+  const unique_id = uuid();
 
   const [task, setTask] = useState({
     id: unique_id,
@@ -12,7 +11,7 @@ function Modal(prop) {
     description: "",
     position: "todo",
   });
-  
+
   function handleChange(event) {
     const { name, value } = event.target;
 
@@ -56,7 +55,9 @@ function Modal(prop) {
             ></input>
             <br></br>
 
-            <button className='btn-modal' onClick={handleAdd}>Add</button>
+            <button className="btn-modal" onClick={handleAdd}>
+              Add
+            </button>
           </form>
         </div>
       </div>

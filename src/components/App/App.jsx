@@ -1,20 +1,3 @@
-// Adding a Task: Right-click on the ToDo pane will open a menu option with - “New Task”.
-// On click of New Task, open a modal (popup) and ask for Title (Text Field) and
-// Description (Text Area) and a button - “Add Task”. On clicking the “Add Task” button, the
-// modal should close and the task should be displayed in the Todo Pane in form of a sticky
-// note.
-// ** A task can only be added from the Todo Pane. Right-Clicking in the InProgress and
-// Done should not show anything.
-
-// ● Menu Options on Sticky Notes: If right-clicked on any sticky notes, it should give open
-// a menu option with the following options -
-// ○ Send to >
-// ■ Todo (disabled if already on Todo)
-// ■ In Progress (disabled if already on In-Progress)
-// ■ Done (disabled if already on Done)
-// ○ Delete
-// ○ Archive
-
 import React, { useState } from "react";
 import TodoPane from "../ToDoPane/TodoPane.jsx";
 import InProgressPane from "../InProgressPane/InProgressPane.jsx";
@@ -27,10 +10,10 @@ import Header from "../Header/Header.jsx";
 function App() {
   const [modelShow, setModelShow] = useState(false);
   const [tasks, setTasks] = useState([]);
-  const [deleteId, setDeleteId]= useState();
-  const [showDeletePopup, setShowDeletePopup] =useState(false);
+  const [deleteId, setDeleteId] = useState();
+  const [showDeletePopup, setShowDeletePopup] = useState(false);
   const [searchResult, setSearchResult] = useState([]);
-  const[searchTerm ,setSearchTerm]= useState('');
+  const [searchTerm, setSearchTerm] = useState("");
 
   function openModal() {
     setModelShow(true);
@@ -52,7 +35,7 @@ function App() {
     var id = event.target.value;
     var target = "";
     let targetIndex;
-   
+
     if (id === 1) {
       target = "todo";
     } else if (id === 2) {
@@ -61,70 +44,57 @@ function App() {
       target = "done";
     }
 
-    console.log(currentId);  
-    
-    var toUpdated = tasks.filter((task) => task.id===currentId);
+    console.log(currentId);
+
+    var toUpdated = tasks.filter((task) => task.id === currentId);
     console.log(toUpdated);
-    
-    toUpdated={...toUpdated[0],position:target}
+
+    toUpdated = { ...toUpdated[0], position: target };
 
     console.log(toUpdated);
-    console.log(tasks)
+    console.log(tasks);
 
     setTasks((prevValue) => {
-      var deletedPrevValue= prevValue.filter(task=>task.id!=currentId);
-      return [
-        ...deletedPrevValue,
-        toUpdated
-      ];
-    }
-    );
+      var deletedPrevValue = prevValue.filter((task) => task.id != currentId);
+      return [...deletedPrevValue, toUpdated];
+    });
   }
 
+  function handleDelete(id) {
+    setDeleteId(id);
+    setShowDeletePopup(true);
+  }
 
-    function handleDelete(id){
-        setDeleteId(id)
-        setShowDeletePopup(true)
-        
-       
-    }
-    
+  function deleteTask() {
+    console.log(tasks);
+    setTasks((prevValues) => {
+      return [...prevValues.filter((task) => task.id !== deleteId)];
+    });
 
-    function deleteTask(){
-      console.log(tasks);
-       setTasks((prevValues)=>{
-          return[
-            ...prevValues.filter(task=>task.id!== deleteId),
-          ]
-        })
+    console.log(tasks);
 
-        console.log(tasks);
+    setShowDeletePopup(false);
+  }
 
-        setShowDeletePopup(false);
-
-    }
-
-
-    function Search(searchTitle){
-      setSearchTerm(searchTitle);
-    if(searchTitle.length>0){
-      setSearchResult((prevValue)=>{return[
-        ...tasks.filter(task=>task.title.toLowerCase().includes(searchTitle.toLowerCase())),
-      ]
-    })     
+  function Search(searchTitle) {
+    setSearchTerm(searchTitle);
+    if (searchTitle.length > 0) {
+      setSearchResult((prevValue) => {
+        return [
+          ...tasks.filter((task) =>
+            task.title.toLowerCase().includes(searchTitle.toLowerCase())
+          ),
+        ];
+      });
     }
   }
 
-      
-
-     
   return (
-     <div>
-
-      <Header onSearch ={Search}/>
+    <div>
+      <Header onSearch={Search} />
 
       <TodoPane handlModal={openModal}>
-        {(searchTerm.length<1?tasks:searchResult)
+        {(searchTerm.length < 1 ? tasks : searchResult)
           .filter((task) => task.position === "todo")
           .map((maptask, index) => {
             return (
@@ -139,11 +109,10 @@ function App() {
               />
             );
           })}
-
       </TodoPane>
 
       <InProgressPane>
-        {(searchTerm.length<1?tasks:searchResult)
+        {(searchTerm.length < 1 ? tasks : searchResult)
           .filter((task) => task.position === "inprogress")
           .map((maptask, index) => {
             return (
@@ -158,11 +127,10 @@ function App() {
               />
             );
           })}
-   
       </InProgressPane>
-      
+
       <DonePane>
-        {(searchTerm.length<1? tasks:searchResult)
+        {(searchTerm.length < 1 ? tasks : searchResult)
           .filter((task) => task.position === "done")
           .map((maptask, index) => {
             return (
@@ -177,14 +145,13 @@ function App() {
               />
             );
           })}
-       
       </DonePane>
-      
+
       {modelShow && <Modal onAdd={Add} onClickOverlay={togglemodal} />}
 
-      {showDeletePopup&&<DeletePopup onDelete={deleteTask}/>}
-      </div>
+      {showDeletePopup && <DeletePopup onDelete={deleteTask} />}
+    </div>
   );
 }
-    
+
 export default App;
