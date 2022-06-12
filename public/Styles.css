@@ -1,0 +1,47 @@
+body{
+    background-color: rgb(228, 228, 228);
+}
+
+
+
+.container{
+    overflow: hidden;
+    text-align: center;
+    display:inline-block;
+    min-width: 33%;
+    min-height: 600px;
+    max-width:33%;
+    height:100%vh;
+    margin: 1px;
+    justify-content: center;
+    background-color: white;
+    
+}
+
+.container h1{
+    font-family: sans-serif;
+    overflow: hidden;
+    color: rgb(50, 209, 193);
+    font-size: 40px;
+    border: solid;
+    border-radius: 3%;
+    border-width: 50%;
+    display: inline-block;
+    border-color: rgba(143, 143, 143, 0.745);
+    padding:0% 5%;
+    
+}
+
+.Menu{
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: aliceblue;    
+}
+
+.Menu ul{
+    color: black;
+    list-style: none;
+    border-style: solid;
+}

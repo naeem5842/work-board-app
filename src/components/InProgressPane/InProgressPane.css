@@ -1,0 +1,10 @@
+.inprogress-pane{
+  text-align: center;
+  top: 30%;
+  left: 33%;
+  width:33%;
+  min-height: 600px;
+  max-height: fit-content;
+  border-right: solid;
+  border-color: rgba(143, 143, 143, 0.745);  
+}
