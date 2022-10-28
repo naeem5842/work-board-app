@@ -1,9 +1,7 @@
 .note {
   background-color: rgb(236, 162, 70);
-  max-width: 200px;
 
-  height: 100px;
-  margin: 10px;
+  min-height: 100px;
 }
 .note h5 {
   display: block;

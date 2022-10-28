@@ -6,35 +6,33 @@ import Modal from "../modal/Modal.jsx";
 import StickyNote from "../StickeyNote/StickyNote.jsx";
 import DeletePopup from "../DeletePopup/DeletePopup.jsx";
 import Header from "../Header/Header.jsx";
+import { MDBRow, MDBModal } from 'mdb-react-ui-kit';
+import "./App.css"
 
 function App() {
-  const [modelShow, setModelShow] = useState(false);
+  // const [modelShow, setModelShow] = useState(false);
   const [tasks, setTasks] = useState([]);
   const [deleteId, setDeleteId] = useState();
   const [showDeletePopup, setShowDeletePopup] = useState(false);
   const [searchResult, setSearchResult] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
-  function openModal() {
-    setModelShow(true);
-  }
-
-  function togglemodal() {
-    setModelShow(false);
-  }
+  
+  const [centredModal, setCentredModal] = useState(false);
+  const toggleShow = () => setCentredModal(!centredModal);
+  const toggledelete = () => setShowDeletePopup(!showDeletePopup);
 
   function Add(task) {
+    console.log(task);
     setTasks((prevValue) => {
       return [...prevValue, task];
     });
-
-    setModelShow(false);
   }
 
   function togglePosition(currentId, event) {
     var id = event.target.value;
     var target = "";
-    let targetIndex;
+
 
     if (id === 1) {
       target = "todo";
@@ -44,35 +42,26 @@ function App() {
       target = "done";
     }
 
-    console.log(currentId);
-
     var toUpdated = tasks.filter((task) => task.id === currentId);
-    console.log(toUpdated);
 
     toUpdated = { ...toUpdated[0], position: target };
 
-    console.log(toUpdated);
-    console.log(tasks);
 
     setTasks((prevValue) => {
-      var deletedPrevValue = prevValue.filter((task) => task.id != currentId);
+      var deletedPrevValue = prevValue.filter((task) => task.id !== currentId);
       return [...deletedPrevValue, toUpdated];
     });
   }
 
   function handleDelete(id) {
     setDeleteId(id);
-    setShowDeletePopup(true);
+    toggledelete();
   }
 
   function deleteTask() {
-    console.log(tasks);
     setTasks((prevValues) => {
       return [...prevValues.filter((task) => task.id !== deleteId)];
     });
-
-    console.log(tasks);
-
     setShowDeletePopup(false);
   }
 
@@ -90,10 +79,13 @@ function App() {
   }
 
   return (
+    <>
     <div>
-      <Header onSearch={Search} />
 
-      <TodoPane handlModal={openModal}>
+      <Header onSearch={Search} />
+      <MDBRow>
+      <TodoPane handleModal={toggleShow}>
+
         {(searchTerm.length < 1 ? tasks : searchResult)
           .filter((task) => task.position === "todo")
           .map((maptask, index) => {
@@ -112,7 +104,7 @@ function App() {
       </TodoPane>
 
       <InProgressPane>
-        {(searchTerm.length < 1 ? tasks : searchResult)
+        {(searchTerm.length <1? tasks: searchResult)
           .filter((task) => task.position === "inprogress")
           .map((maptask, index) => {
             return (
@@ -146,11 +138,20 @@ function App() {
             );
           })}
       </DonePane>
+      </MDBRow>
+      
 
-      {modelShow && <Modal onAdd={Add} onClickOverlay={togglemodal} />}
+      <MDBModal tabIndex='0' show={centredModal} setShow={setCentredModal}>
+      <Modal onAdd={Add} toggleShow = {toggleShow} />
+      </MDBModal>
 
-      {showDeletePopup && <DeletePopup onDelete={deleteTask} />}
+      <MDBModal tabIndex='1' show={showDeletePopup} setShow={setShowDeletePopup}>
+      <DeletePopup onDelete={deleteTask} toggledelete = {toggledelete} />
+      </MDBModal>
+
+      
     </div>
+</>
   );
 }
 

@@ -1,4 +1,5 @@
 .inprogress-pane{
+  flex: left;
   text-align: center;
   top: 30%;
   left: 33%;

@@ -1,4 +1,12 @@
 import React, { useState } from "react";
+import {
+  MDBCard,
+  MDBCardBody,
+  MDBCardTitle,
+  MDBCardText,
+  MDBBtn,
+  MDBTypography
+} from 'mdb-react-ui-kit';
 import "./StickeyNote.css";
 
 function StickyNote(prop) {
@@ -54,16 +62,19 @@ function StickyNote(prop) {
     setShowOptions(false);
   }
 
-  function handleArchive() {
-    setShowOptions(false);
-  }
 
   return (
-    <>
-      <div className="note" onContextMenu={showOptions}>
-        <h3>{prop.title}</h3>
-        <p>{prop.description}</p>
+    <> 
+      <MDBCard className="m-4 w-auto" onContextMenu={showOptions}>
+      <div className="note note-warning text-start" >
+      <MDBTypography className="h4 m-0 "> {prop.title} </MDBTypography>
+      <MDBTypography className="p m-0 "> {prop.description} </MDBTypography>
+
       </div>
+       
+      
+      </MDBCard>
+      
 
       {showOptins && (
         <div
@@ -79,7 +90,6 @@ function StickyNote(prop) {
                 Send To
               </li>
               <li onClick={handleDelete}>Delete</li>
-              <li onClick={handleArchive}>Archive</li>
             </ul>
           </div>
 
@@ -113,4 +123,5 @@ function StickyNote(prop) {
     </>
   );
 }
+
 export default StickyNote;

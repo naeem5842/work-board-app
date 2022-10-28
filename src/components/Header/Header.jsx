@@ -1,4 +1,10 @@
 import React from "react";
+import {
+  MDBContainer,
+  MDBNavbar,
+  MDBNavbarBrand,
+  MDBInputGroup
+} from 'mdb-react-ui-kit';
 import "./Header.css";
 
 function Header(props) {
@@ -7,19 +13,23 @@ function Header(props) {
   }
 
   return (
-    <div className="heading">
-      <h1>Work Board</h1>
-      <form>
-        <input
-          name="searchbar"
-          className="searchbar"
-          type="text"
-          placeholder="Search for Task."
-          onChange={handleSearch}
-        ></input>
-      </form>
-    </div>
+
+
+    <MDBNavbar light bgColor='primary' className="mb-2 p-2">
+      <MDBContainer fluid>
+        <MDBNavbarBrand>Work Board</MDBNavbarBrand>
+        <MDBInputGroup tag="form" className='d-flex w-auto'>
+          <input onChange={handleSearch} className='form-control' placeholder="Search a task" aria-label="Search" type='Search' />
+        </MDBInputGroup>
+      </MDBContainer>
+    </MDBNavbar>
+
+
+
+   
   );
 }
 
 export default Header;
+
+
