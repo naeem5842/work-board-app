@@ -21,7 +21,7 @@ function DeletePopup(props) {
   }
 
   return (
-  
+
 
         <MDBModalDialog centered>
           <MDBModalContent>
