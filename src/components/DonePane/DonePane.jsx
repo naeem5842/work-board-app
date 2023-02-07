@@ -1,5 +1,5 @@
 import React from "react";
-import "./DonePane.css";
+
 import { MDBRow, MDBCol } from 'mdb-react-ui-kit';
 function DonePane(prop) {
   return (

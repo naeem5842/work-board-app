@@ -9,7 +9,7 @@ import {MDBCard,
   MDBListGroupItem,
   
  } from 'mdb-react-ui-kit';
-import "./ToDoPane.css";
+
 
 function TodoPane(prop) {
 //   const [point, setPoint] = useState({

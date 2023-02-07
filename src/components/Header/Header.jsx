@@ -5,7 +5,7 @@ import {
   MDBNavbarBrand,
   MDBInputGroup
 } from 'mdb-react-ui-kit';
-import "./Header.css";
+
 
 function Header(props) {
   function handleSearch(event) {
