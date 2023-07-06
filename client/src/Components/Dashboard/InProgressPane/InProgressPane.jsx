@@ -1,5 +1,5 @@
 import React from "react";
-import { MDBRow, MDBCol } from 'mdb-react-ui-kit';
+import { MDBCol } from 'mdb-react-ui-kit';
 import "./InProgressPane.css";
 
 function InProgressPane(prop) {

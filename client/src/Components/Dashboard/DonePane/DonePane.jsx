@@ -1,6 +1,6 @@
 import React from "react";
 
-import { MDBRow, MDBCol } from 'mdb-react-ui-kit';
+import {MDBCol } from 'mdb-react-ui-kit';
 function DonePane(prop) {
   return (
     <MDBCol md='4' className=" p-0 min-vh-100">

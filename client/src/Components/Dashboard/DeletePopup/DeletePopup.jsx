@@ -1,7 +1,6 @@
 import React from "react";
 import {
   MDBBtn,
- 
   MDBModalDialog,
   MDBModalContent,
   MDBModalHeader,

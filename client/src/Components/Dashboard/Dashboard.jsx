@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import TodoPane from "../ToDoPane/TodoPane.jsx";
-import InProgressPane from "../InProgressPane/InProgressPane.jsx";
-import DonePane from "../DonePane/DonePane.jsx";
-import Modal from "../modal/Modal.jsx";
-import StickyNote from "../StickeyNote/StickyNote.jsx";
-import DeletePopup from "../DeletePopup/DeletePopup.jsx";
-import Header from "../Header/Header.jsx";
+import TodoPane from "./ToDoPane/TodoPane";
+import InProgressPane from "./InProgressPane/InProgressPane.jsx";
+import DonePane from "./DonePane/DonePane.jsx";
+import Modal from "./modal/Modal.jsx";
+import StickyNote from "./StickeyNote/StickyNote.jsx";
+import DeletePopup from "./DeletePopup/DeletePopup.jsx";
+import Header from "./Header/Header.jsx";
 import { MDBRow, MDBModal } from 'mdb-react-ui-kit';
-import "./App.css"
 
-function App() {
+
+function Dashboard() {
   // const [modelShow, setModelShow] = useState(false);
   const [tasks, setTasks] = useState([]);
   const [deleteId, setDeleteId] = useState();
@@ -154,4 +154,4 @@ function App() {
   );
 }
 
-export default App;
+export default Dashboard;
