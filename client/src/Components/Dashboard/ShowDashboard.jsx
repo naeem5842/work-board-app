@@ -21,7 +21,6 @@ const ShowDashboard = () => {
 
     const fetchData = async () =>{
         try{
-        console.log("called fetch");
         const token = sessionStorage.getItem('token');
         
         const response = await fetch(`${process.env.REACT_APP_BACKEND}/user/dashboard`, {
@@ -33,6 +32,7 @@ const ShowDashboard = () => {
         });
         if(response.ok){
             const data = await response.json();
+            console.log("User Login Sucessful")
             setMsg(data.message);
             setUserLoggedIn(true);
         }

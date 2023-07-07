@@ -41,7 +41,8 @@ function Dashboard(props) {
 
     if (response.ok) {
       const data = await response.json();
-      setTasks(data);
+      console.log(data);  
+      setTasks(data.tasks);
     }
   };
 
@@ -66,10 +67,13 @@ function Dashboard(props) {
 
     if (response.ok) {
       const data = await response.json();
-      setTasks(data.tasks);
+      console.log(data);
     }
 
-    // console.log(task);
+    setTasks((prevValue) => {
+      return [...prevValue, task];
+    });
+
   };
 
 const togglePosition = async (currentId, event) => {
@@ -106,14 +110,16 @@ const togglePosition = async (currentId, event) => {
 
     if (response.ok) {
       const data = await response.json();
-      setTasks(data.tasks);
+      console.log(data);
     }
-    
 
+    var toUpdated = tasks.filter((task) => task.id === currentId);
+    toUpdated = { ...toUpdated[0], position: target };
 
-
-
-
+    setTasks((prevValue) => {
+      var deletedPrevValue = prevValue.filter((task) => task.id !== currentId);
+      return [...deletedPrevValue, toUpdated];
+    });
 
   }
 
@@ -145,8 +151,12 @@ const togglePosition = async (currentId, event) => {
 
     if (response.ok) {
       const data = await response.json();
-      setTasks(data.tasks);
+      console.log(data);
     }
+
+    setTasks((prevValues) => {
+      return [...prevValues.filter((task) => task.id !== deleteId)];
+    });
 
     setShowDeletePopup(false);
   };
