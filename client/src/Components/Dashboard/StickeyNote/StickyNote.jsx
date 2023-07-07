@@ -1,13 +1,9 @@
 import React, { useState } from "react";
 import {
   MDBCard,
-  MDBCardBody,
-  MDBCardTitle,
-  MDBCardText,
-  MDBBtn,
   MDBTypography
 } from 'mdb-react-ui-kit';
-
+import "./StickeyNote.css";
 
 function StickyNote(prop) {
   const [showOptins, setShowOptions] = useState(false);

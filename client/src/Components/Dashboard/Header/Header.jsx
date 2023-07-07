@@ -3,8 +3,10 @@ import {
   MDBContainer,
   MDBNavbar,
   MDBNavbarBrand,
-  MDBInputGroup
+  MDBInputGroup,
+  MDBBtn
 } from 'mdb-react-ui-kit';
+
 
 
 function Header(props) {
@@ -12,6 +14,10 @@ function Header(props) {
     props.onSearch(event.target.value);
   }
 
+  const callLogout = (event) =>{
+    event.preventDefault()
+    props.handleLogout();
+  }
   return (
 
 
@@ -19,7 +25,8 @@ function Header(props) {
       <MDBContainer fluid>
         <MDBNavbarBrand>Work Board</MDBNavbarBrand>
         <MDBInputGroup tag="form" className='d-flex w-auto'>
-          <input onChange={handleSearch} className='form-control' placeholder="Search a task" aria-label="Search" type='Search' />
+          <input  onChange={handleSearch} className='form-control' placeholder="Search a task" aria-label="Search" type='Search' />
+          <MDBBtn onClick={callLogout} rounded className="ms-4" color='danger'>Logout</MDBBtn>
         </MDBInputGroup>
       </MDBContainer>
     </MDBNavbar>
