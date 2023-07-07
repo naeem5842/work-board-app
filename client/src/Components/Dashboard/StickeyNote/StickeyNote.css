@@ -1,0 +1,49 @@
+
+  .contextMenu {
+    position: absolute;
+  }
+  .contextMenu .pri-contextmenu {
+    background-color: rgba(255, 255, 255, 0.631);
+    box-shadow: rgba(0, 0, 0, 0.811);
+  }
+  .pri-contextmenu ul {
+    margin: 3px;
+    padding: 0;
+    list-style: none;
+    width: 150px;
+    height: auto;
+  }
+  .pri-contextmenu ul li {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 3%;
+  }
+  .sec-contextmenu {
+    margin: 0;
+    padding: 0;
+    background-color: rgba(255, 255, 255, 0.631);
+    position: absolute;
+    left: 97%;
+    top: 0%;
+  }
+  .sec-contextmenu ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    width: 150px;
+    height: auto;
+  }
+  
+  .sec-contextmenu ul li {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 3%;
+  }
