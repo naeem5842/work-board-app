@@ -32,7 +32,7 @@ const LoginPage = () => {
 
   const LoginUser = async () =>{
     try{
-      const response = await fetch("http://localhost:3001/user/login", {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND}/user/login`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
