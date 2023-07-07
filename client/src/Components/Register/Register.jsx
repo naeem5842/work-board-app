@@ -49,7 +49,7 @@ const Register = () => {
 
     const registerUser = async () => {
       try {
-        const response = await fetch("http://localhost:3001/user/register", {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND}/user/register`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

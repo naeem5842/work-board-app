@@ -29,7 +29,7 @@ function Dashboard(props) {
     const token = sessionStorage.getItem("token");
     const userId = JSON.parse(user)._id;
     const response = await fetch(
-      `http://localhost:3001/task/get-all-tasks?id=${userId}`,
+      `${process.env.REACT_APP_BACKEND}/task/get-all-tasks?id=${userId}`,
       {
         method: "GET",
         headers: {
@@ -53,7 +53,7 @@ function Dashboard(props) {
       task: task,
     };
     const response = await fetch(
-      `http://localhost:3001/task/save-all-tasks?id=${userId}`,
+      `${process.env.REACT_APP_BACKEND}/task/save-all-tasks?id=${userId}`,
       {
         method: "POST",
         headers: {
@@ -93,7 +93,7 @@ const togglePosition = async (currentId, event) => {
       },
     };
     const response = await fetch(
-      `http://localhost:3001/task/update-position?id=${userId}`,
+      `${process.env.REACT_APP_BACKEND}/task/update-position?id=${userId}`,
       {
         method: "POST",
         headers: {
@@ -132,7 +132,7 @@ const togglePosition = async (currentId, event) => {
       },
     };
     const response = await fetch(
-      `http://localhost:3001/task/delete-task?id=${userId}`,
+      `${process.env.REACT_APP_BACKEND}/task/delete-task?id=${userId}`,
       {
         method: "POST",
         headers: {
