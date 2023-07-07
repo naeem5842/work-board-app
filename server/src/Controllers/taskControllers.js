@@ -9,7 +9,8 @@ export const getAllTasks = async (req, res)=>{
     const tasks = await Task.findOne({userId : userId});
     
     if(tasks){
-        return res.status(200).json(tasks.tasks);
+        console.log({message: "Returned Tasks form the server for the user",  tasks: tasks.tasks});
+        return res.status(200).json({message: "Returned Tasks form the server for the user",  tasks: tasks.tasks});
     }
    }
    catch(error){
@@ -28,12 +29,14 @@ export const saveAllTasks = async (req, res) =>{
             const newTask = new Task({ userId : userId, tasks:[task]
             });
             await newTask.save();
-            return res.status(201).json(newTask);
+            console.log({message : "new User Created and task saved in task db", tasks : newTask});
+            return res.status(201).json({message : "new User Created and task saved in task db", tasks : newTask});
         }
         else{
             tasks.tasks.push(task);
             await tasks.save();
-            res.status(201).json(tasks);
+            console.log({message : "Task Saved Sucessfully in the Database", tasks : tasks.tasks , savedTask : task});
+            res.status(200).json({message : "Task Saved Sucessfully in the Database", tasks : tasks.tasks , savedTask : task});
             
         }
         
@@ -53,10 +56,9 @@ export const deleteTask = async (req, res) =>{
 
     try{
         const deleted = await Task.findOneAndUpdate({userId : userId}, { $pull: { tasks: { id : task.id } } });
-        console.log("deleted" , deleted)
         const tasks = await Task.findOne({ userId : userId});
-        res.status(200).json(tasks);
-        console.log("tasks", tasks);
+        res.status(200).json({message: "Task Deleted From the database", tasks: tasks.tasks , DeletedTask : deleted});
+        console.log({message: "Task Deleted From the database", tasks: tasks.tasks , DeletedTask : deleted});
     }
     catch(error){
         console.error(error);
@@ -80,7 +82,8 @@ export const updatePosition = async(req, res) =>{
         );
 
         const alltasks = await Task.findOne({userId : userId});
-        return res.status(200).json(alltasks)
+        console.log({message : "Position has been updated", tasks :alltasks.tasks, updatedTask : data.tasks});
+        return res.status(200).json({message : "Position has been updated", tasks :alltasks.tasks, updatedTask : data.tasks})
     }
     catch(error){
         console.error(error);
