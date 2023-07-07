@@ -24,7 +24,7 @@ const ShowDashboard = () => {
         console.log("called fetch");
         const token = sessionStorage.getItem('token');
         
-        const response = await fetch("http://localhost:3001/user/dashboard", {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND}/user/dashboard`, {
             method : "GET",
             headers : {
                 authorization : `Bearer ${token}`,
