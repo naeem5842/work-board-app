@@ -47,6 +47,11 @@ function Dashboard(props) {
   };
 
   const Add = async (task) => {
+    
+    setTasks((prevValue) => {
+      return [...prevValue, task];
+    });
+
     const user = sessionStorage.getItem("user");
     const token = sessionStorage.getItem("token");
     const userId = JSON.parse(user)._id;
@@ -70,10 +75,6 @@ function Dashboard(props) {
       console.log(data);
     }
 
-    setTasks((prevValue) => {
-      return [...prevValue, task];
-    });
-
   };
 
 const togglePosition = async (currentId, event) => {
@@ -86,6 +87,14 @@ const togglePosition = async (currentId, event) => {
     } else if (id === 3) {
       target = "done";
     }
+
+    var toUpdated = tasks.filter((task) => task.id === currentId);
+    toUpdated = { ...toUpdated[0], position: target };
+
+    setTasks((prevValue) => {
+      var deletedPrevValue = prevValue.filter((task) => task.id !== currentId);
+      return [...deletedPrevValue, toUpdated];
+    });
 
     const user = sessionStorage.getItem("user");
     const token = sessionStorage.getItem("token");
@@ -113,14 +122,6 @@ const togglePosition = async (currentId, event) => {
       console.log(data);
     }
 
-    var toUpdated = tasks.filter((task) => task.id === currentId);
-    toUpdated = { ...toUpdated[0], position: target };
-
-    setTasks((prevValue) => {
-      var deletedPrevValue = prevValue.filter((task) => task.id !== currentId);
-      return [...deletedPrevValue, toUpdated];
-    });
-
   }
 
   function handleDelete(id) {
@@ -129,6 +130,12 @@ const togglePosition = async (currentId, event) => {
   }
 
   const deleteTask = async () => {
+    setTasks((prevValues) => {
+      return [...prevValues.filter((task) => task.id !== deleteId)];
+    });
+
+    setShowDeletePopup(false);
+
     const user = sessionStorage.getItem("user");
     const token = sessionStorage.getItem("token");
     const userId = JSON.parse(user)._id;
@@ -153,12 +160,6 @@ const togglePosition = async (currentId, event) => {
       const data = await response.json();
       console.log(data);
     }
-
-    setTasks((prevValues) => {
-      return [...prevValues.filter((task) => task.id !== deleteId)];
-    });
-
-    setShowDeletePopup(false);
   };
 
   function Search(searchTitle) {
